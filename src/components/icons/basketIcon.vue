@@ -15,7 +15,7 @@
 <script>
 
 export default {
-  name: 'basket',
+  name: 'basketIcon',
   components: {
   },
   props: {

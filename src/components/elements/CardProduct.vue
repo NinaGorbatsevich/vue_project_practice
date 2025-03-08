@@ -1,26 +1,43 @@
 <template>
-  <div class="cards">
-    <div class="card">
-      <img :src="srcImg" alt="" class="card__image">
+  <div :class="{'cards': true, 'cards_basket': cardsBasket}">
+    <div :class="{'card': true, 'card_basket': cardBasket}">
+      <img :src="srcImg" alt="" :class="{'card__image': true, 'card__image_basket': cardImageBasket}">
       <h3 class="card__title">{{ title }}</h3>
-      <p class="card__subtitle">{{ subtitle }}</p>
+      <p :class="{'card__subtitle': true, 'card__subtitle_basket': cardSubtitleBasket}">{{ subtitle }}</p>
       <div class="card__price">
-        <p class="price">{{ price }}</p>
-        <button class="button-price">
-          <span class="line1"></span>
-          <span class="line2"></span>
-        </button>
+        <p :class="price">{{ price }}</p>
+        <BaseButton :add="true"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
+import BaseButton from '@/components/ui/BaseButton.vue'
+
 export default {
   name: 'CardProduct',
   components: {
+    BaseButton
   },
   props: {
+    cardSubtitleBasket: {
+      type: Boolean,
+      default: false
+    },
+    cardImageBasket: {
+      type: Boolean,
+      default: false
+    },
+    cardsBasket: {
+      type: Boolean,
+      default: false
+    },
+    cardBasket: {
+      type: Boolean,
+      default: false
+    },
     title: {
       type: String,
       default: ''
@@ -35,10 +52,8 @@ export default {
     },
     price: {
       type: String,
-      default:''
+      default: ''
     }
-  },
-  setup () {
   }
 }
 </script>
@@ -51,7 +66,6 @@ export default {
     border: 1px solid #D58C51;
     color: #FFFFFF;
     padding: 43px 21px 36px 21px;
-    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -62,6 +76,7 @@ export default {
     }
 
     &__title {
+      display: contents;
       font-weight: 500;
       font-size: 17px;
       margin: 31px 0 13px 0;
@@ -79,48 +94,39 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
     }
   }
 
-  .button-price {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #FFFFFF;
-    color: #FFFFFF;
-    border-radius: 15px;
-    background-color: transparent;
-    cursor: pointer;
-    position: relative;
+.cards_basket {
+  display: block;
+  overflow: scroll;
+}
 
-    &:hover {
-      background-color: #D58C51;
-      border: 2px solid #D58C51;
-      transition: background-color 0.3s ease;
-    }
+.card_basket {
+  flex-direction: row;
+  width: 100%;
+  height: 122px;
+  margin-bottom: 31px;
+  border: none;
+  align-items: center;
+  padding: 43px 21px 36px 0px;
 
-    &:active {
-      background-color: #85552e;
-    }
+  &__subtitle {
+    display: none;
+  }
+}
+
+.card {
+
+  &__image_basket {
+    width: 122px;
+    height: 122px;
+    margin-right: 98px;
   }
 
-  .line1 {
-    border: 2px solid #FFFFFF;
-    border-radius: 2px;
-    display: block;
-    height: 1px;
-    width: 14px;
-    position: absolute;
-    top: 12px;
+  &__subtitle_basket {
+    display: none;
   }
-
-  .line2 {
-    border: 2px solid #FFFFFF;
-    border-radius: 2px;
-    display: block;
-    height: 1px;
-    width: 14px;
-    transform: rotate(90deg);
-    position: absolute;
-    top: 12px;
-  }
+}
 </style>
