@@ -4,7 +4,9 @@
       <h1 class="header-title">НАША ПРОДУКЦИЯ</h1>
       <div class="header-basket">
         <p class="price">3 товара на сумму 3500р</p>
-        <basketIcon class="basket"/>
+        <router-link to="/basket">
+          <basketIcon class="basket"/>
+        </router-link>
       </div>
     </div>
   </header>
