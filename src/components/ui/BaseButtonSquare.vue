@@ -24,10 +24,10 @@ export default {
     font-size: 14px;
     color: #131313;
     background-color: #D58C51;
+    border: 1px solid #D58C51;
     padding: 12px 40px;
 
     &:hover{
-      border-color: #D58C51;
       color: #D58C51;
       background-color: transparent;
       transition: background-color 0.5s ease;

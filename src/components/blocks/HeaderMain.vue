@@ -3,7 +3,7 @@
     <div class="header__wrapper">
       <h1 class="header-title">НАША ПРОДУКЦИЯ</h1>
       <div class="header-basket">
-        <p class="price">3 товара на сумму 3500р</p>
+        <p class="price">{{ CountProductsInBasket }} товара на сумму 3500р</p>
         <router-link to="/basket">
           <basketIcon class="basket"/>
         </router-link>
