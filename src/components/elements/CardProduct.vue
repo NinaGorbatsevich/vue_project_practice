@@ -1,10 +1,14 @@
 <template>
-  <div :class="{'cards': true, 'cards_basket': cardsBasket}">
-    <div :class="{'card': true, 'card_basket': cardBasket}">
-      <img :src="srcImg" alt="" :class="{'card__image': true, 'card__image_basket': cardImageBasket}">
-      <h3 :class="{'card__title': true, 'card__title_basket': cardTitleBasket}">{{ title }}</h3>
-      <p :class="{'card__subtitle': true, 'card__subtitle_basket': cardSubtitleBasket}">{{ subtitle }}</p>
-      <div :class="{'card__price': true, 'card__price_basket': cardPriceBasket}">
+  <div :class="{'cards': true, 'cards_basket': cardsBasket, 'cards_card': cardsCard}">
+    <div :class="{'card': true, 'card_basket': cardBasket, 'card_card': cardCard}">
+      <router-link to="/card">
+        <div :class="{'card-link': true, 'card-link_basket': cardLinkBasket, 'card-link_card': cardLinkCard}">
+          <img :src="srcImg" alt="" :class="{'card__image': true, 'card__image_basket': cardImageBasket, 'card__image_card': cardImageCard}">
+          <h3 :class="{'card__title': true, 'card__title_basket': cardTitleBasket, 'card__title_card': cardTitleCard}">{{ title }}</h3>
+          <p :class="{'card__subtitle': true, 'card__subtitle_basket': cardSubtitleBasket, 'card__subtitle_card': cardSubtitleCard}">{{ subtitle }}</p>
+        </div>
+      </router-link>
+      <div :class="{'card__price': true, 'card__price_basket': cardPriceBasket, 'card__price_card': cardPriceCard}">
         <p :class="{'price': true, 'price_basket': priceBasket}">{{ price }}</p>
         <BaseButton :add="true"/>
       </div>
@@ -46,6 +50,10 @@ export default {
       type: Boolean,
       default: false
     },
+    cardLinkBasket: {
+      type: Boolean,
+      default: false
+    },
     cardImageBasket: {
       type: Boolean,
       default: false
@@ -59,6 +67,34 @@ export default {
       default: false
     },
     cardPriceBasket: {
+      type: Boolean,
+      default: false
+    },
+    cardsCard: {
+      type: Boolean,
+      default: false
+    },
+    cardCard: {
+      type: Boolean,
+      default: false
+    },
+    cardLinkCard: {
+      type: Boolean,
+      default: false
+    },
+    cardImageCard: {
+      type: Boolean,
+      default: false
+    },
+    cardTitleCard: {
+      type: Boolean,
+      default: false
+    },
+    cardSubtitleCard: {
+      type: Boolean,
+      default: false
+    },
+    cardPriceCard: {
       type: Boolean,
       default: false
     }
@@ -108,6 +144,11 @@ export default {
   .cards_basket {
     display: block;
     overflow: scroll;
+  }
+
+  .card-link_basket {
+    display: flex;
+    align-items: center;
   }
 
   .card {

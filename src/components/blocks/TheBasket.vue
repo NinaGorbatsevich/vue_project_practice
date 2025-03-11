@@ -9,6 +9,7 @@
         :cardTitleBasket="true"
         subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
         :cardSubtitleBasket="true"
+        :cardLinkBasket="true"
         :cardPriceBasket="true"
         price="2 700 ₽"
       />
@@ -20,6 +21,7 @@
         :cardTitleBasket="true"
         subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
         :cardSubtitleBasket="true"
+        :cardLinkBasket="true"
         :cardPriceBasket="true"
         price="2 700 ₽"
       />
@@ -31,6 +33,7 @@
         :cardTitleBasket="true"
         subtitle="Не следует, однако забывать, что реализация намеченных плановых"
         :cardSubtitleBasket="true"
+        :cardLinkBasket="true"
         :cardPriceBasket="true"
         price="1 600 ₽"
       />
@@ -42,6 +45,7 @@
         :cardTitleBasket="true"
         subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
         :cardSubtitleBasket="true"
+        :cardLinkBasket="true"
         :cardPriceBasket="true"
         price="2 700 ₽"
       />
@@ -53,6 +57,7 @@
         :cardTitleBasket="true"
         subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
         :cardSubtitleBasket="true"
+        :cardLinkBasket="true"
         :cardPriceBasket="true"
         price="1 820 ₽"
       />
@@ -64,6 +69,7 @@
         :cardTitleBasket="true"
         subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
         :cardSubtitleBasket="true"
+        :cardLinkBasket="true"
         :cardPriceBasket="true"
         price="2 700 ₽"
       />
