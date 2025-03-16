@@ -54,6 +54,12 @@ export default {
 
   &_theme-orange {
     border-color: #D58C51;
+
+    &:hover {
+      background-color: #d58c514b;
+      border: 1px solid #D58C51;
+      transition: 0.5s;
+    }
   }
 
   &__line {
@@ -102,6 +108,21 @@ export default {
       left: -1px;
       top: 2px;
       transform: rotate(45deg);
+    }
+  }
+
+  &__line_remove {
+    background-color: #D58C51;
+    transform: rotate(45deg);
+
+    &::before {
+      background-color: #D58C51;
+      height: 1px;
+    }
+
+    &::after {
+      background-color: #D58C51;
+      height: 1px;
     }
   }
 }

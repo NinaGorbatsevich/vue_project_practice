@@ -1,6 +1,6 @@
 <template>
   <header :class="{'header': true, 'header_card': headerCard}">
-    <div :class="{'header__wrapper': true, 'header__wrapper_basket': headerWrapperBasket}">
+    <div :class="{'header__wrapper': true, 'header__wrapper_basket': headerWrapperBasket, 'header__wrapper_card': headerWrapperCard}">
       <div :class="{'title-wrapper': true, 'title-wrapper_basket': titleWrapperBasket}">
         <router-link to="/" :class="{'button-back': true, 'button-back_basket': buttonBackBasket}">
           <BaseButton :arrow="true"/>
@@ -9,7 +9,7 @@
       </div>
       <div class="header-basket">
         <div :class="{'basket-wrapper': true, 'basket-wrapper_basket': basketWrapperBasket}">
-          <p class="price"> товара на сумму 3500р</p>
+          <p class="price"> {{ countBasket }} товара на сумму {{ sumInBasket }} ₽</p>
           <router-link to="/basket">
             <basketIcon class="basket"/>
           </router-link>
@@ -24,6 +24,9 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseButtonSquare from '@/components/ui/BaseButtonSquare.vue'
 import basketIcon from '@/components/icons/basketIcon.vue'
@@ -59,9 +62,25 @@ export default {
     headerCard: {
       type: Boolean,
       default: false
+    },
+    headerWrapperCard: {
+      type: Boolean,
+      default: false
     }
   },
   setup () {
+    const store = useStore()
+    const countBasket = computed(() => {
+      return store.getters.getCountProductsInBasket
+    })
+    const sumInBasket = computed(() => {
+      return store.getters.getAllPricePoductsInBasket
+    })
+
+    return {
+      countBasket,
+      sumInBasket
+    }
   }
 }
 </script>
@@ -140,5 +159,9 @@ export default {
   .header_card {
     background: url('../../assets/image/background_card.png'), #161516;
     background-size: 100%;
+  }
+
+  .header__wrapper_card {
+    padding: 48px 0 30px 0;
   }
 </style>

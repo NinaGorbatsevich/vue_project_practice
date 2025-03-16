@@ -59,17 +59,10 @@ export default createStore({
         description: 'Значимость этих проблем настолько очевидна, что укрепление и развитие структуры',
         price: 2700
       }
-    ],
-
-    CountProductsInBasket: 0,
-    AllPricePoductsInBasket: 0,
-    BasketProducts: []
+    ]
   },
   getters: {
-    getProducts: state => state.Products,
-    getCountProductsInBasket: state => state.CountProductsInBasket,
-    getAllPricePoductsInBasket: state => state.AllPricePoductsInBasket,
-    getBasketProducts: state => state.BasketProducts
+    getProducts: state => state.Products
   },
   mutations: {
   },

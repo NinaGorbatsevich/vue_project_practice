@@ -26,4 +26,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+svg {
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover {
+    circle {
+      fill: #d58c514b;
+      transition: 0.5s;
+    }
+
+    path {
+      fill: #D58C51;
+      transition: 0.5s;
+    }
+  }
+}
 </style>

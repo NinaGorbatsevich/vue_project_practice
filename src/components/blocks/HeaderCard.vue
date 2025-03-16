@@ -1,6 +1,7 @@
 <template>
     <HeaderMain
       :headerCard="true"
+      :headerWrapperCard="true"
       :buttonBackBasket="true"
       title=""
     />
