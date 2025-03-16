@@ -2,58 +2,21 @@
   <main class="main">
     <div class="main__wrapper">
       <CardProduct
-        :srcImg= "require('../../assets/image/1.png')"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        price="2 700 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/2.png')"
-        title="Свиные ребрышки на гриле с зеленью"
-        subtitle="Не следует, однако забывать, что реализация намеченных плановых"
-        price="1 600 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/3.png')"
-        title="Креветки по-королевски в лимонном соке"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        price="1 820 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/4.png')"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        price="2 700 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/1.png')"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        price="2 700 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/2.png')"
-        title="Свиные ребрышки на гриле с зеленью"
-        subtitle="Не следует, однако забывать, что реализация намеченных плановых"
-        price="1 600 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/3.png')"
-        title="Креветки по-королевски в лимонном соке"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        price="1 820 ₽"
-      />
-      <CardProduct
-        :srcImg= "require('../../assets/image/4.png')"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        price="2 700 ₽"
+        v-for="(item, i) in productsList"
+        :key="i"
+        :title="item.title"
+        :srcImg="item.img"
+        :subtitle="item.subtitle"
+        :price="item.price"
+        :btnSquareOff="true"
       />
     </div>
   </main>
 </template>
 
 <script>
+import { computed } from 'vue'/* метод который отслеживает происходящее */
+import { useStore } from 'vuex'
 
 import CardProduct from '@/components/elements/CardProduct.vue'
 
@@ -65,6 +28,14 @@ export default {
   props: {
   },
   setup () {
+    const store = useStore()/* переменная для обращения запросов */
+    const productsList = computed(() => { /* отслеживает изменения */
+      return store.getters.getProducts
+    })
+
+    return {
+      productsList
+    }
   }
 }
 </script>
@@ -78,8 +49,12 @@ export default {
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 35px 20px;
       padding-bottom: 50px;
     }
+  }
+
+  .subtitle {
+    display: block;
   }
 </style>

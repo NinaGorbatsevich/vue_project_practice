@@ -2,64 +2,28 @@
   <div class="basket">
     <div class="basket__container">
       <CardProduct
+        v-for="(item, i) in productsList"
+        :key="i"
+        :title="item.title"
+        :srcImg="item.img"
+        :subtitle="item.subtitle"
+        :price="item.price"
+        :btnSquareOff="true"
         :cardBasket="true"
-        :srcImg= "require('../../assets/image/1.png')"
-        :cardImageBasket="true"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        :cardSubtitleBasket="true"
-        price="2 700 ₽"
-      />
-      <CardProduct
-        :cardBasket="true"
-        :srcImg= "require('../../assets/image/1.png')"
-        :cardImageBasket="true"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        :cardSubtitleBasket="true"
-        price="2 700 ₽"
-      />
-      <CardProduct
-        :cardBasket="true"
-        :srcImg= "require('../../assets/image/2.png')"
-        :cardImageBasket="true"
-        title="Свиные ребрышки на гриле с зеленью"
-        subtitle="Не следует, однако забывать, что реализация намеченных плановых"
-        :cardSubtitleBasket="true"
-        price="1 600 ₽"
-      />
-      <CardProduct
-        :cardBasket="true"
-        :srcImg= "require('../../assets/image/1.png')"
-        :cardImageBasket="true"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        :cardSubtitleBasket="true"
-        price="2 700 ₽"
-      />
-      <CardProduct
-        :cardBasket="true"
-        :srcImg= "require('../../assets/image/3.png')"
-        :cardImageBasket="true"
-        title="Креветки по-королевски в лимонном соке"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        :cardSubtitleBasket="true"
-        price="1 820 ₽"
-      />
-      <CardProduct
-        :cardBasket="true"
-        :srcImg= "require('../../assets/image/1.png')"
-        :cardImageBasket="true"
-        title="Устрицы по рокфеллеровски"
-        subtitle="Значимость этих проблем настолько очевидна, что укрепление и развитие структуры"
-        :cardSubtitleBasket="true"
-        price="2 700 ₽"
+        :imageBasket="true"
+        :titleBasket="true"
+        :subtitleBasket="true"
+        :cardLinkBasket="true"
+        :cardPriceBasket="true"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import CardProduct from '../elements/CardProduct.vue'
 
 export default {
@@ -70,6 +34,14 @@ export default {
   props: {
   },
   setup () {
+    const store = useStore()
+    const productsInBasket = computed(() => {
+      return store.getters.getBasketProducts
+    })
+
+    return {
+      productsInBasket
+    }
   }
 }
 </script>
@@ -78,7 +50,7 @@ export default {
   .basket {
     background-color: #161516;
     padding-bottom: 102px;
-    height: 76vh;
+    height: calc(100vh - 260px);
     overflow: auto;
 
     &__container {
