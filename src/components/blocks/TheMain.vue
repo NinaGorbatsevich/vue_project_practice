@@ -9,6 +9,7 @@
         :subtitle="item.subtitle"
         :price="item.price"
         :btnSquareOff="true"
+        @clickProductBtn='addToBasket(item.id)'
       />
     </div>
   </main>
@@ -29,12 +30,18 @@ export default {
   },
   setup () {
     const store = useStore()/* переменная для обращения запросов */
+
     const productsList = computed(() => { /* отслеживает изменения */
       return store.getters.getProducts
     })
 
+    const addToBasket = (id) => {
+      store.commit('setAddProductInBasket', id)
+    }
+
     return {
-      productsList
+      productsList,
+      addToBasket
     }
   }
 }

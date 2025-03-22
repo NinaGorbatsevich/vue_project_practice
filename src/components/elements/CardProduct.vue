@@ -54,11 +54,13 @@
         <BaseButton
           add
           :remove="cardBasket"
+          @clickActionBtn="$emit('clickProductBtn')"
           :class="{
           'base-button': true,
           'base-button_off': baseButtonOff
           }"/>
-        <BaseButtonSquare button="В КОРЗИНУ" :class="{
+        <BaseButtonSquare button="В КОРЗИНУ"
+          :class="{
           'btn-square': true,
           'btn-square_off': btnSquareOff
           }"/>
