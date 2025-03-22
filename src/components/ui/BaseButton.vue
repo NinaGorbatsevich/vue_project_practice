@@ -2,7 +2,9 @@
   <div :class="{
     'button__icon-event even': true,
     'even_theme-orange': arrow || remove
-    }">
+    }"
+    @click.stop="$emit('clickActionBtn')"
+    >
     <span :class="{
       'even__line': true,
       'even__line_add': add,

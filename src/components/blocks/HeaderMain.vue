@@ -1,15 +1,37 @@
 <template>
-  <header :class="{'header': true, 'header_card': headerCard}">
-    <div :class="{'header__wrapper': true, 'header__wrapper_basket': headerWrapperBasket, 'header__wrapper_card': headerWrapperCard}">
-      <div :class="{'title-wrapper': true, 'title-wrapper_basket': titleWrapperBasket}">
-        <router-link to="/" :class="{'button-back': true, 'button-back_basket': buttonBackBasket}">
-          <BaseButton :arrow="true"/>
-        </router-link>
+  <header :class="{
+    'header': true,
+    'header_card': headerCard
+    }">
+    <div :class="{
+      'header__wrapper': true,
+      'header__wrapper_basket': headerWrapperBasket,
+      'header__wrapper_card': headerWrapperCard
+      }">
+      <div :class="{
+        'title-wrapper': true,
+        'title-wrapper_basket': titleWrapperBasket
+        }">
+          <BaseButton
+            v-if="headerWrapperBasket || headerWrapperCard"
+            @clickActionBtn="goBack"
+            arrow
+          />
         <h1 class="header-title">{{ title }}</h1>
       </div>
       <div class="header-basket">
-        <div :class="{'basket-wrapper': true, 'basket-wrapper_basket': basketWrapperBasket}">
-          <p class="price"> {{ countBasket }} товара на сумму {{ sumInBasket }} ₽</p>
+        <div :class="{
+          'basket-wrapper': true,
+          'basket-wrapper_basket': basketWrapperBasket
+          }">
+          <div class="price-wrapper">
+            <p class="counts">
+              {{ countBasket }} товара
+            </p>
+            <p class="price">
+              на сумму {{ sumInBasket }} ₽
+            </p>
+          </div>
           <router-link to="/basket">
             <basketIcon class="basket"/>
           </router-link>
@@ -26,6 +48,7 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseButtonSquare from '@/components/ui/BaseButtonSquare.vue'
@@ -70,16 +93,20 @@ export default {
   },
   setup () {
     const store = useStore()
+    const router = useRouter()
     const countBasket = computed(() => {
       return store.getters.getCountProductsInBasket
     })
     const sumInBasket = computed(() => {
       return store.getters.getAllPricePoductsInBasket
     })
-
+    const goBack = () => {
+      router.go(-1)
+    }
     return {
       countBasket,
-      sumInBasket
+      sumInBasket,
+      goBack
     }
   }
 }
@@ -126,7 +153,12 @@ export default {
     align-items: center;
   }
 
-  .price {
+  .price-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .counts, .price {
     font-family: "Montserrat", serif;
     font-weight: 500;
     width: 151px;

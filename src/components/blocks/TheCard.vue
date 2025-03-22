@@ -1,4 +1,10 @@
 <template>
+  <HeaderMain
+    :headerCard="true"
+    :headerWrapperCard="true"
+    :buttonBackBasket="true"
+    title=""
+  />
   <div class="background">
     <div class="wrapper">
       <CardProduct
@@ -28,11 +34,13 @@
 </template>
 
 <script>
+import HeaderMain from '../blocks/HeaderMain.vue'
 import CardProduct from '@/components/elements/CardProduct.vue'
 
 export default {
   name: 'TheCard',
   components: {
+    HeaderMain,
     CardProduct
   },
   props: {

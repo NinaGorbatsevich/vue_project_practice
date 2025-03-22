@@ -1,10 +1,13 @@
 <template>
   <footer class="footer">
-    <span class="footer__line"></span>
       <div class="final">
         <div class="final__price">
-          <p class="order">ЗАКАЗ НА СУММУ:</p>
-          <p class="final-price">6 220 ₽</p>
+          <p class="order">
+            ЗАКАЗ НА СУММУ:
+          </p>
+          <p class="final-price">
+            {{ sumInBasket }} ₽
+          </p>
         </div>
         <BaseButtonSquare/>
       </div>
@@ -12,6 +15,9 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
 import BaseButtonSquare from '../ui/BaseButtonSquare.vue'
 
 export default {
@@ -22,6 +28,13 @@ export default {
   props: {
   },
   setup () {
+    const store = useStore()
+    const sumInBasket = computed(() => {
+      return store.getters.getAllPriceProductsInBasket
+    })
+    return (
+      sumInBasket
+    )
   }
 }
 </script>
@@ -29,13 +42,7 @@ export default {
 <style lang="scss" scoped>
   .footer {
     background-color: #161516;
-
-    &__line {
-      display: block;
-      width: 100%;
-      height: 1px;
-      background-color: #D58C51;
-    }
+    border-top: 1px solid #D58C51;
   }
 
   .final {
