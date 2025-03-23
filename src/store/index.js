@@ -73,21 +73,18 @@ export default createStore({
   },
   mutations: {
     setAddProductInBasket: (state, val) => { /* val это значение которое мы ищем, конкретно здесь это id */
-      const product = state.Products.find((item) => item.id === val) /* используем метод find чтоб найти нужное id */
-      if (product) {
-        state.BasketProducts.push(product) /* если product = true, добавляем найденный товар в корзину методом push */
-      }
+      state.BasketProducts.push(val)
       state.CountProductsInBasket = state.BasketProducts.length
       state.AllPricePoductsInBasket = state.BasketProducts.reduce((sum, current) => {
         return sum + current.price
       }, 0) /* к нулю будет прибавляться цена */
+    },
+    setDeleteProductInBasket: (state, val) => {
+      state.BasketProducts = state.BasketProducts.filter((item) => item.idx !== val)
+      state.CountProductsInBasket = state.BasketProducts.length
+      state.AllPricePoductsInBasket = state.BasketProducts.reduce((sum, current) => {
+        return sum + current.price
+      }, 0)
     }
-  },
-  setDeleteProductInBasket: (state, val) => {
-    state.BasketProducts = state.BasketProducts.filter((item) => item.id !== val)
-    state.CountProductsInBasket = state.BasketProducts.length
-    state.AllPricePoductsInBasket = state.BasketProducts.reduce((sum, current) => {
-      return sum + current.price
-    }, 0)
   }
 })

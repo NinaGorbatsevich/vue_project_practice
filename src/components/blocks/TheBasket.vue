@@ -22,7 +22,7 @@
         :subtitleBasket="true"
         :cardLinkBasket="true"
         :cardPriceBasket="true"
-        @clickProductBtn="deleteProductBasket(item.id)"
+        @clickProductBtn="deleteProductBasket(item.idx)"
       />
     </div>
   </div>
@@ -49,8 +49,8 @@ export default {
       return store.getters.getBasketProducts
     })
 
-    const deleteProductBasket = (id) => {
-      store.commit('setDeleteProductInBasket', id)
+    const deleteProductBasket = (idx) => {
+      store.commit('setDeleteProductInBasket', idx)
     }
     return {
       productsInBasket,

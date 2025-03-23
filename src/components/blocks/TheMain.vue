@@ -9,7 +9,7 @@
         :subtitle="item.subtitle"
         :price="item.price"
         :btnSquareOff="true"
-        @clickProductBtn='addToBasket(item.id)'
+        @clickProductBtn='addToBasket(item)'
       />
     </div>
   </main>
@@ -18,6 +18,7 @@
 <script>
 import { computed } from 'vue'/* метод который отслеживает происходящее */
 import { useStore } from 'vuex'
+import { uuid } from 'vue-uuid'
 
 import CardProduct from '@/components/elements/CardProduct.vue'
 
@@ -35,8 +36,16 @@ export default {
       return store.getters.getProducts
     })
 
-    const addToBasket = (id) => {
-      store.commit('setAddProductInBasket', id)
+    const addToBasket = (item) => {
+      store.commit('setAddProductInBasket',
+        {
+          idx: uuid.v1(), /* генерируется уникальное id */
+          id: item.id,
+          img: item.img,
+          title: item.title,
+          price: item.price
+        }
+      )
     }
 
     return {
