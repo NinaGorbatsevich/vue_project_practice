@@ -26,7 +26,7 @@
           }">
           <div class="price-wrapper">
             <p class="counts">
-              {{ countBasket }} товара
+              {{ countBasket }} {{ productWord }}
             </p>
             <p class="price">
               на сумму {{ sumInBasket }} ₽
@@ -100,13 +100,26 @@ export default {
     const sumInBasket = computed(() => {
       return store.getters.getAllPricePoductsInBasket
     })
+
+    const productWord = computed(() => {
+      const count = countBasket.value
+      if (count % 10 === 1 && count % 100 !== 11) {
+        return 'товар'
+      } else if (count % 10 >= 2 && count % 100 <= 4) {
+        return 'товара'
+      } else {
+        return 'товаров'
+      }
+    })
+
     const goBack = () => {
       router.go(-1)
     }
     return {
       countBasket,
       sumInBasket,
-      goBack
+      goBack,
+      productWord
     }
   }
 }

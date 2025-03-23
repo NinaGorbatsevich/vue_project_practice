@@ -32,9 +32,9 @@ export default {
     const sumInBasket = computed(() => {
       return store.getters.getAllPriceProductsInBasket
     })
-    return (
+    return {
       sumInBasket
-    )
+    }
   }
 }
 </script>
