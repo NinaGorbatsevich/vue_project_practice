@@ -64,8 +64,10 @@ export default {
   .basket {
     background-color: #161516;
     padding-bottom: 102px;
-    height: calc(100vh - 260px);
+    height: calc(100vh - 228px);
     overflow: auto;
+
+    &::-webkit-scrollbar { display: none; }
 
     &__container {
         max-width: 860px;

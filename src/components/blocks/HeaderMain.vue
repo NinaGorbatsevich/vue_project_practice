@@ -1,40 +1,52 @@
 <template>
-  <header :class="{
-    'header': true,
-    'header_card': headerCard
-    }">
-    <div :class="{
-      'header__wrapper': true,
-      'header__wrapper_basket': headerWrapperBasket,
-      'header__wrapper_card': headerWrapperCard
-      }">
-      <div :class="{
-        'title-wrapper': true,
-        'title-wrapper_basket': titleWrapperBasket
-        }">
-          <BaseButton
-            v-if="headerWrapperBasket || headerWrapperCard"
-            @clickActionBtn="goBack"
-            arrow
-          />
-        <h1 class="header-title">{{ title }}</h1>
+  <header
+    :class="{
+      'header': true,
+      'header_card': headerCard
+    }"
+  >
+    <div
+      :class="{
+        'header__wrapper': true,
+        'header__wrapper_basket': headerWrapperBasket,
+        'header__wrapper_card': headerWrapperCard
+      }"
+      >
+      <div
+        :class="{
+          'title-wrapper': true,
+          'title-wrapper_basket': titleWrapperBasket
+        }"
+        >
+        <BaseButton
+          v-if="headerWrapperBasket || headerWrapperCard"
+          @clickActionBtn="goBack"
+          arrow
+        />
+        <h1 class="header-title">
+          {{ title }}
+        </h1>
       </div>
       <div class="header-basket">
-        <div :class="{
-          'basket-wrapper': true,
-          'basket-wrapper_basket': basketWrapperBasket
-          }">
+        <div
+          :class="{
+            'header-basket__wrapper': true,
+            'header-basket__wrapper_basket': basketWrapperBasket
+          }"
+          >
           <div class="price-wrapper">
-            <p class="counts">
+            <p class="price-wrapper__counts">
               {{ countBasket }} {{ productWord }}
             </p>
-            <p class="price">
-              на сумму {{ sumInBasket }} ₽
+            <p class="price-wrapper__price">
+              на сумму {{ sumInBasket.toLocaleString('ru-Ru') }} ₽
             </p>
           </div>
+
           <router-link to="/basket">
             <basketIcon class="basket"/>
           </router-link>
+
         </div>
         <BaseButtonSquare
           button="Выйти"
@@ -98,14 +110,16 @@ export default {
       return store.getters.getCountProductsInBasket
     })
     const sumInBasket = computed(() => {
-      return store.getters.getAllPricePoductsInBasket
+      return store.getters.getAllPriceProductsInBasket
     })
 
     const productWord = computed(() => {
       const count = countBasket.value
-      if (count % 10 === 1 && count % 100 !== 11) {
+      if (count > 10 && [11, 12, 13, 14].includes(count % 100)) {
+        return 'товаров'
+      } else if (count % 10 === 1) {
         return 'товар'
-      } else if (count % 10 >= 2 && count % 100 <= 4) {
+      } else if ([2, 3, 4].includes(count % 10)) {
         return 'товара'
       } else {
         return 'товаров'
@@ -127,7 +141,12 @@ export default {
 
 <style lang="scss" scoped>
   .header {
+    font-family: "Montserrat", serif;
     background-color: #161516;
+
+    &_card {
+      background-color: transparent;
+    }
 
     &__wrapper {
       max-width: 1310px;
@@ -135,22 +154,38 @@ export default {
       align-items: center;
       justify-content: space-between;
       margin: 0 auto;
-      padding: 48px 0 75px 0;
+      padding: 54px 0 81px 0;
       color: #fff;
+
+      &_basket {
+        justify-content: flex-end;
+        padding: 53px 0 38px 0;
+      }
+
+      &_card {
+        padding: 53px 0 25px 0;
+      }
     }
   }
 
   .button-back {
     display: none;
+
+    &_basket {
+      display: block;
+    }
   }
 
   .title-wrapper {
     display: flex;
     gap: 63px;
+
+    &_basket {
+      margin-right: 114px;
+    }
   }
 
   .header-title {
-    font-family: "Montserrat", serif;
     font-weight: 700;
     font-size: 31px;
     line-height: 38px;
@@ -158,55 +193,31 @@ export default {
 
   .header-basket {
     display: flex;
-    align-items: center;
-  }
 
-  .basket-wrapper {
+  &__wrapper {
     display: flex;
     align-items: center;
+
+    &_basket{
+      display: none;
+    }
+  }
   }
 
   .price-wrapper {
     display: flex;
     flex-direction: column;
-  }
 
-  .counts, .price {
-    font-family: "Montserrat", serif;
-    font-weight: 500;
-    width: 151px;
-    font-size: 17px;
-    line-height: 20px;
-    text-align: right;
+      &__counts, &__price {
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 20px;
+      text-align: right;
+    }
   }
 
   .basket {
     margin: 0 20px;
     cursor: pointer;
-  }
-
-  .header__wrapper_basket{
-    justify-content: flex-end;
-  }
-
-  .title-wrapper_basket {
-    margin-right: 114px;
-  }
-
-  .button-back_basket {
-    display: block;
-  }
-
-  .basket-wrapper_basket{
-    display: none;
-  }
-
-  .header_card {
-    background: url('../../assets/image/background_card.png'), #161516;
-    background-size: 100%;
-  }
-
-  .header__wrapper_card {
-    padding: 48px 0 30px 0;
   }
 </style>

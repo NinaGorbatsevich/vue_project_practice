@@ -67,10 +67,10 @@ export default {
       flex-wrap: wrap;
       gap: 35px 20px;
       padding-bottom: 50px;
-    }
-  }
+      height: calc(100vh - 188px);
+      overflow: auto;
 
-  .subtitle {
-    display: block;
+      &::-webkit-scrollbar { display: none; }
+    }
   }
 </style>
