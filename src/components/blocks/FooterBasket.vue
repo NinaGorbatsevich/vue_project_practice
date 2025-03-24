@@ -1,12 +1,12 @@
 <template>
   <footer class="footer">
-      <div class="final">
-        <div class="final__price">
-          <p class="order">
+      <div class="footer__wrapper">
+        <div class="final-price">
+          <p class="final-price__text">
             ЗАКАЗ НА СУММУ:
           </p>
-          <p class="final-price">
-            {{ sumInBasket }} ₽
+          <p class="final-price__price">
+            {{ sumInBasket.toLocaleString('ru-Ru') }} ₽
           </p>
         </div>
         <BaseButtonSquare/>
@@ -43,33 +43,32 @@ export default {
   .footer {
     background-color: #161516;
     border-top: 1px solid #D58C51;
-  }
 
-  .final {
-    max-width: 860px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    padding: 20px 0 27px 0;
-
-    &__price {
+    &__wrapper {
+      max-width: 860px;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      padding: 20px 0 27px 0;
     }
-  }
-
-  .order {
-    font-family: "Montserrat", serif;
-    font-weight: 400;
-    font-size: 21px;
-    color: #fff;
-    margin-right: 16px;
   }
 
   .final-price {
     font-family: "Montserrat", serif;
     font-weight: 400;
+    display: flex;
+
+    &__text {
+    font-size: 21px;
+    color: #fff;
+    margin-right: 16px;
+    }
+
+    &__price {
     font-size: 18px;
     color: #D58C51;
+    }
   }
+
 </style>

@@ -62,20 +62,22 @@ export default createStore({
     ],
 
     CountProductsInBasket: 0,
-    AllPricePoductsInBasket: 0,
-    BasketProducts: []
+    AllPriceProductsInBasket: 0,
+    BasketProducts: [],
+    CurrentProduct: null
   },
   getters: {
     getProducts: state => state.Products,
     getCountProductsInBasket: state => state.CountProductsInBasket,
-    getAllPricePoductsInBasket: state => state.AllPricePoductsInBasket,
-    getBasketProducts: state => state.BasketProducts
+    getAllPriceProductsInBasket: state => state.AllPriceProductsInBasket,
+    getBasketProducts: state => state.BasketProducts,
+    getCurrentProduct: state => state.CurrentProduct
   },
   mutations: {
     setAddProductInBasket: (state, val) => { /* val это значение которое мы ищем, конкретно здесь это id */
       state.BasketProducts.push(val)
       state.CountProductsInBasket = state.BasketProducts.length
-      state.AllPricePoductsInBasket = state.BasketProducts.reduce((sum, current) => {
+      state.AllPriceProductsInBasket = state.BasketProducts.reduce((sum, current) => {
         return sum + current.price
       }, 0) /* к нулю будет прибавляться цена */
     },
@@ -85,6 +87,13 @@ export default createStore({
       state.AllPricePoductsInBasket = state.BasketProducts.reduce((sum, current) => {
         return sum + current.price
       }, 0)
+    },
+    setCurrentProduct: (state, val) => {
+      state.Products.forEach((item) => {
+        if (item.id === +val) {
+          state.CurrentProduct = item
+        }
+      })
     }
   }
 })

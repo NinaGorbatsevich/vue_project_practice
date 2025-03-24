@@ -15,7 +15,7 @@ const routes = [
     component: BasketPage
   },
   {
-    path: '/card',
+    path: '/card/:id',
     name: 'card',
     component: CardPage
   }

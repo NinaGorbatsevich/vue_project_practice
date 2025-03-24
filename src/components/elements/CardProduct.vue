@@ -1,40 +1,46 @@
 <template>
   <div :class="{
     'cards': true,
-    'cards_basket': cardsBasket,
-    'cards_card': cardsCard
-    }">
+    'cards_basket': cardsBasket
+    }"
+    >
     <div :class="{
       'card': true,
       'card_basket': cardBasket,
       'card_card': cardCard
-      }">
+      }"
+      >
       <router-link to="/card">
         <div :class="{
-          'card-link': true,
-          'card-link_basket': cardLinkBasket,
-          'card-link_card': cardLinkCard
-          }">
+          'card__link': true,
+          'card__link_basket': cardLinkBasket,
+          'card__link_card': cardLinkCard
+          }"
+          >
           <img :src="srcImg" alt="" :class="{
             'image': true,
             'image_basket': imageBasket,
             'image_card': imageCard
-            }">
+            }"
+            >
           <div :class="{
             'wrapper-text': true,
             'wrapper-text_card': wrapperTextCard
-            }">
+            }"
+            >
             <h3 :class="{
-              'title': true,
-              'title_basket': titleBasket,
-              'title_card': titleCard
-              }">
+              'wrapper-text__title': true,
+              'wrapper-text__title_basket': titleBasket,
+              'wrapper-text__title_card': titleCard
+              }"
+              >
               {{ title }}</h3>
             <p :class="{
-              'subtitle': true,
-              'subtitle_basket': subtitleBasket,
-              'subtitle_card': subtitleCard
-              }">
+              'wrapper-text__subtitle': true,
+              'wrapper-text__subtitle_basket': subtitleBasket,
+              'wrapper-text__subtitle_card': subtitleCard
+              }"
+              >
               {{ subtitle }}</p>
           </div>
         </div>
@@ -43,14 +49,14 @@
         'card__price': true,
         'card__price_basket': cardPriceBasket,
         'card__price_card': cardPriceCard
-        }">
+        }"
+        >
         <p
           :class="{
           'price': true,
-          'price_basket': priceBasket,
           'price_card': priceCard
           }">
-          {{ price }} ₽</p>
+          {{ price.toLocaleString('ru-Ru') }} ₽</p>
         <BaseButton
           add
           :remove="cardBasket"
@@ -58,12 +64,14 @@
           :class="{
           'base-button': true,
           'base-button_off': baseButtonOff
-          }"/>
+          }"
+          />
         <BaseButtonSquare button="В КОРЗИНУ"
           :class="{
           'btn-square': true,
           'btn-square_off': btnSquareOff
-          }"/>
+          }"
+          />
       </div>
     </div>
   </div>
@@ -189,6 +197,18 @@ export default {
       transition: color 0.3s ease;
     }
 
+    &_card {
+      width: 100%;
+      border: none;
+      padding: 0;
+      height: 400px;
+      position: relative;
+
+      &:hover {
+        color: #FFFFFF;
+      }
+    }
+
     &__price {
       font-weight: 500;
       font-size: 17px;
@@ -197,32 +217,20 @@ export default {
       align-items: center;
       gap: 15px;
       margin-top: auto;
+
+      &_basket {
+        margin: auto 0 auto auto;
+        color: #D58C51;
+      }
+
+      &_card {
+        justify-content: flex-end;
+        margin-right: 110px;
+        position: absolute;
+        top: 365px;
+        right: 40px;
+      }
     }
-  }
-
-  .title {
-    font-weight: 500;
-    font-size: 17px;
-    margin: 31px 0 13px 0;
-  }
-
-  .subtitle {
-    font-weight: 400;
-    font-size: 14px;
-    margin-bottom: 52px;
-  }
-
-  .cards_basket {
-    display: block;
-    overflow: scroll;
-  }
-
-  .card-link_basket {
-    display: flex;
-    align-items: center;
-  }
-
-  .card {
 
     &_basket {
       flex-direction: row;
@@ -234,68 +242,75 @@ export default {
       align-items: center;
     }
 
-    &__price_basket {
-      margin: auto 0 auto auto;
-      color: #D58C51;
+    &__link {
+
+      &_basket {
+        display: flex;
+        align-items: center;
+      }
+
+      &_card {
+        display: flex;
+        flex-direction: row;
+        cursor: default;
+      }
     }
   }
 
-  .image_basket {
-    width: 122px;
-    margin-right: 98px;
-  }
+  .wrapper-text {
 
-  .title_basket {
-    max-width: 310px;
-    margin: 0;
-  }
+    &_card {
+      max-width: 528px;
+    }
 
-  .subtitle_basket {
-    display: none;
-  }
+    &__title {
+      font-weight: 500;
+      font-size: 17px;
+      margin: 31px 0 13px 0;
 
-  .card_card {
-    width: 100%;
-    border: none;
-    padding: 0;
-    height: 400px;
-    position: relative;
+      &_card {
+        font-size: 30px;
+        color: #D58C51;
+        margin: 58px 0 21px 0;
+      }
 
-    &:hover {
-      color: #FFFFFF;
+      &_basket {
+        max-width: 310px;
+        margin: 0;
+      }
+    }
+
+    &__subtitle {
+      font-weight: 400;
+      font-size: 14px;
+      margin-bottom: 52px;
+
+      &_card {
+        margin: 21px 0 34px 0;
+      }
+
+      &_basket {
+        display: none;
+      }
     }
   }
 
-  .card-link_card {
-    display: flex;
-    flex-direction: row;
-    cursor: default;
+  .cards_basket {
+    display: block;
+    overflow: scroll;
   }
 
-  .image_card {
-    width: 503px;
-    margin: 0 200px 0 70px;
-  }
+  .image {
 
-  .wrapper-text_card {
-    max-width: 528px;
-  }
+    &_basket {
+      width: 122px;
+      margin-right: 98px;
+    }
 
-  .title_card {
-    font-size: 30px;
-    color: #D58C51;
-    margin: 58px 0 21px 0;
-  }
-
-  .subtitle_card {
-    margin: 21px 0 34px 0;
-  }
-  .card__price_card {
-    justify-content: flex-end;
-    margin-right: 110px;
-    position: absolute;
-    top: 365px;
-    right: 40px;
+    &_card {
+      width: 503px;
+      margin: 0 200px 0 70px;
+    }
   }
 
   .price_card {
