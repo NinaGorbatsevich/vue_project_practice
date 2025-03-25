@@ -3,6 +3,7 @@
     'cards': true,
     'cards_basket': cardsBasket
     }"
+    @click='$router.push(`/card/${id}`)'
     >
     <div :class="{
       'card': true,
@@ -10,7 +11,6 @@
       'card_card': cardCard
       }"
       >
-      <router-link to="/card">
         <div :class="{
           'card__link': true,
           'card__link_basket': cardLinkBasket,
@@ -44,7 +44,6 @@
               {{ subtitle }}</p>
           </div>
         </div>
-      </router-link>
       <div :class="{
         'card__price': true,
         'card__price_basket': cardPriceBasket,
@@ -176,6 +175,10 @@ export default {
     btnSquareOff: {
       type: Boolean,
       default: false
+    },
+    id: {
+      type: Number,
+      default: 0
     }
   }
 }
