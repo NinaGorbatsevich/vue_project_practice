@@ -9,6 +9,7 @@
         :subtitle="item.subtitle"
         :price="item.price"
         :btnSquareOff="true"
+        :id="item.id"
         @clickProductBtn='addToBasket(item)'
       />
     </div>

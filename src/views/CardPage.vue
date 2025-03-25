@@ -8,7 +8,7 @@
     />
     <div class="wrapper">
       <CardProduct
-        :img="currentProduct?.img"
+        :srcImg="currentProduct?.img"
         :title="currentProduct?.title"
         :subtitle="currentProduct?.subtitle"
         :price="currentProduct?.price"
@@ -23,7 +23,6 @@
         :baseButtonOff="true"
       />
     </div>
-    {{ currentProduct }}
   </div>
 </template>
 
