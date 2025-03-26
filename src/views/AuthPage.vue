@@ -52,7 +52,7 @@ export default {
     content: '';
     position: absolute;
     top: 0;
-    background: rgba(0, 0, 0, 0.45); /* Это затемнение, его степень можно отрегулировать */
+    background: rgba(0, 0, 0, 0.45);
     width: 100%;
     height: 100%;
   }
@@ -74,6 +74,7 @@ export default {
   &__title {
     font-weight: 700;
     font-size: 31px;
+    color: #161516;
     margin-bottom: 36px;
   }
 }
