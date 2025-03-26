@@ -1,7 +1,7 @@
 <template>
-  <p class="text">
+  <a href="" class="text">
     {{ text }}
-  </p>
+  </a>
 </template>
 
 <script>
