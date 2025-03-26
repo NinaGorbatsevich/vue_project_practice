@@ -3,7 +3,7 @@
     'cards': true,
     'cards_basket': cardsBasket
     }"
-    @click='$router.push(`/card/${id}`)'
+    @click="$router.push(`/card/${id}`)"
     >
     <div :class="{
       'card': true,
@@ -78,8 +78,8 @@
 
 <script>
 
-import BaseButton from '@/components/ui/BaseButton.vue'
-import BaseButtonSquare from '../ui/BaseButtonSquare.vue'
+import BaseButton from '@/components/ui/BaseButton'
+import BaseButtonSquare from '../ui/BaseButtonSquare'
 
 export default {
   name: 'CardProduct',
@@ -185,147 +185,146 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card {
-    width: 312px;
-    height: 552px;
-    font-family: "Montserrat", serif;
-    border: 1px solid #D58C51;
-    color: #FFFFFF;
-    padding: 43px 21px 36px 21px;
-    display: flex;
-    flex-direction: column;
+.card {
+  width: 312px;
+  height: 552px;
+  font-family: "Montserrat", serif;
+  border: 1px solid #D58C51;
+  color: #FFFFFF;
+  padding: 43px 21px 36px 21px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    color: #D58C51;
+    transition: color 0.3s ease;
+  }
+
+  &_card {
+    width: 100%;
+    border: none;
+    padding: 0;
+    height: 400px;
+    position: relative;
 
     &:hover {
+      color: #FFFFFF;
+    }
+  }
+
+  &__price {
+    font-weight: 500;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+
+    &_basket {
+      margin: auto 0 auto auto;
       color: #D58C51;
-      transition: color 0.3s ease;
     }
 
     &_card {
-      width: 100%;
-      border: none;
-      padding: 0;
-      height: 400px;
-      position: relative;
-
-      &:hover {
-        color: #FFFFFF;
-      }
+      justify-content: flex-end;
+      margin-right: 110px;
+      position: absolute;
+      top: 365px;
+      right: 40px;
     }
+  }
 
-    &__price {
-      font-weight: 500;
-      font-size: 17px;
+  &_basket {
+    flex-direction: row;
+    width: 100%;
+    height: 122px;
+    padding: 0;
+    margin-bottom: 31px;
+    border: none;
+    align-items: center;
+  }
+
+  &__link {
+
+    &_basket {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      margin-top: auto;
-
-      &_basket {
-        margin: auto 0 auto auto;
-        color: #D58C51;
-      }
-
-      &_card {
-        justify-content: flex-end;
-        margin-right: 110px;
-        position: absolute;
-        top: 365px;
-        right: 40px;
-      }
     }
 
-    &_basket {
+    &_card {
+      display: flex;
       flex-direction: row;
-      width: 100%;
-      height: 122px;
-      padding: 0;
-      margin-bottom: 31px;
-      border: none;
-      align-items: center;
-    }
-
-    &__link {
-
-      &_basket {
-        display: flex;
-        align-items: center;
-      }
-
-      &_card {
-        display: flex;
-        flex-direction: row;
-        cursor: default;
-      }
+      cursor: default;
     }
   }
+}
 
-  .wrapper-text {
+.wrapper-text {
+
+  &_card {
+    max-width: 528px;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 17px;
+    margin: 31px 0 13px 0;
 
     &_card {
-      max-width: 528px;
+      font-size: 30px;
+      color: #D58C51;
+      margin: 58px 0 21px 0;
     }
-
-    &__title {
-      font-weight: 500;
-      font-size: 17px;
-      margin: 31px 0 13px 0;
-
-      &_card {
-        font-size: 30px;
-        color: #D58C51;
-        margin: 58px 0 21px 0;
-      }
-
-      &_basket {
-        max-width: 310px;
-        margin: 0;
-      }
-    }
-
-    &__subtitle {
-      font-weight: 400;
-      font-size: 14px;
-      margin-bottom: 52px;
-
-      &_card {
-        margin: 21px 0 34px 0;
-      }
-
-      &_basket {
-        display: none;
-      }
-    }
-  }
-
-  .cards_basket {
-    display: block;
-    overflow: scroll;
-  }
-
-  .image {
 
     &_basket {
-      width: 122px;
-      margin-right: 98px;
+      max-width: 310px;
+      margin: 0;
     }
+  }
+
+  &__subtitle {
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 52px;
 
     &_card {
-      width: 503px;
-      margin: 0 200px 0 70px;
+      margin: 21px 0 34px 0;
+    }
+
+    &_basket {
+      display: none;
     }
   }
+}
 
-  .price_card {
-    margin-right: 137px;
+.cards_basket {
+  display: block;
+  overflow: scroll;
+}
+
+.image {
+
+  &_basket {
+    width: 122px;
+    margin-right: 98px;
   }
 
-  .base-button_off {
-    display: none;
+  &_card {
+    width: 503px;
+    margin: 0 200px 0 70px;
   }
+}
 
-  .btn-square_off {
-    display: none;
-  }
+.price_card {
+  margin-right: 137px;
+}
 
+.base-button_off {
+  display: none;
+}
+
+.btn-square_off {
+  display: none;
+}
 </style>

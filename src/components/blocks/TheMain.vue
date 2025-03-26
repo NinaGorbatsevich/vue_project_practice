@@ -21,7 +21,7 @@ import { computed } from 'vue'/* метод который отслеживае�
 import { useStore } from 'vuex'
 import { uuid } from 'vue-uuid'
 
-import CardProduct from '@/components/elements/CardProduct.vue'
+import CardProduct from '@/components/elements/CardProduct'
 
 export default {
   name: 'TheMain',
@@ -58,20 +58,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .main {
-    background-color: #161516;
+.main {
+  background-color: #161516;
 
-    &__wrapper {
-      max-width: 1310px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 35px 20px;
-      padding-bottom: 50px;
-      height: calc(100vh - 188px);
-      overflow: auto;
+  &__wrapper {
+    max-width: 1310px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px 20px;
+    padding-bottom: 50px;
+    height: calc(100vh - 188px);
+    overflow: auto;
 
-      &::-webkit-scrollbar { display: none; }
-    }
+    &::-webkit-scrollbar { display: none; }
   }
+}
 </style>

@@ -1,5 +1,12 @@
 <template>
-  <button :class="{'button_order': true, 'button_exit': exitButton}">{{ button }}
+  <button
+  :class="{
+    'button_order': true,
+    'button_exit': exitButton,
+    'button_auth': authButton
+    }"
+    >
+    {{ button }}
   </button>
 </template>
 
@@ -17,6 +24,10 @@ export default {
     exitButton: {
       type: Boolean,
       default: false
+    },
+    authButton: {
+      type: Boolean,
+      default: false
     }
   },
   setup () {
@@ -25,7 +36,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .button_order {
+.button {
+  &_order {
     font-family: "Montserrat", serif;
     font-weight: 400;
     font-size: 14px;
@@ -39,17 +51,26 @@ export default {
       color: #D58C51;
       background-color: transparent;
       transition: background-color 0.5s ease;
+      }
     }
-  }
 
-  .button_exit {
-    padding: 12px 75px 13px 77px;
-    background-color: transparent;
-    color: #D58C51;
+  &_exit {
+  padding: 12px 75px 13px 77px;
+  background-color: transparent;
+  color: #D58C51;
 
     &:hover {
       background-color: #D58C51;
       color: #131313;
+      }
     }
+
+  &_auth {
+    padding: 12px 77px;
+    width: 200px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
   }
+}
 </style>
