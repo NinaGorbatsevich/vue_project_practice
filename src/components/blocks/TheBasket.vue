@@ -22,6 +22,7 @@
         :subtitleBasket="true"
         :cardLinkBasket="true"
         :cardPriceBasket="true"
+        @click="$router.push(`/card/${id}`)"
         @clickProductBtn="deleteProductBasket(item.idx)"
       />
     </div>
@@ -32,8 +33,8 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
-import HeaderMain from '../blocks/HeaderMain.vue'
-import CardProduct from '../elements/CardProduct.vue'
+import HeaderMain from '../blocks/HeaderMain'
+import CardProduct from '../elements/CardProduct'
 
 export default {
   name: 'TheBasket',
@@ -61,17 +62,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .basket {
-    background-color: #161516;
-    padding-bottom: 102px;
-    height: calc(100vh - 228px);
-    overflow: auto;
+.basket {
+  background-color: #161516;
+  padding-bottom: 102px;
+  height: calc(100vh - 228px);
+  overflow: auto;
 
-    &::-webkit-scrollbar { display: none; }
+  &::-webkit-scrollbar { display: none; }
 
-    &__container {
-        max-width: 860px;
-        margin: 0 auto;
-      }
+  &__container {
+      max-width: 860px;
+      margin: 0 auto;
     }
+  }
 </style>

@@ -62,9 +62,9 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
-import BaseButton from '@/components/ui/BaseButton.vue'
-import BaseButtonSquare from '@/components/ui/BaseButtonSquare.vue'
-import basketIcon from '@/components/icons/basketIcon.vue'
+import BaseButton from '@/components/ui/BaseButton'
+import BaseButtonSquare from '@/components/ui/BaseButtonSquare'
+import basketIcon from '@/components/icons/basketIcon'
 
 export default {
   name: 'HeaderMain',
@@ -140,84 +140,84 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .header {
-    font-family: "Montserrat", serif;
-    background-color: #161516;
+.header {
+  font-family: "Montserrat", serif;
+  background-color: #161516;
 
-    &_card {
-      background-color: transparent;
-    }
-
-    &__wrapper {
-      max-width: 1310px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0 auto;
-      padding: 54px 0 81px 0;
-      color: #fff;
-
-      &_basket {
-        justify-content: flex-end;
-        padding: 53px 0 38px 0;
-      }
-
-      &_card {
-        padding: 53px 0 25px 0;
-      }
-    }
+  &_card {
+    background-color: transparent;
   }
-
-  .button-back {
-    display: none;
-
-    &_basket {
-      display: block;
-    }
-  }
-
-  .title-wrapper {
-    display: flex;
-    gap: 63px;
-
-    &_basket {
-      margin-right: 114px;
-    }
-  }
-
-  .header-title {
-    font-weight: 700;
-    font-size: 31px;
-    line-height: 38px;
-  }
-
-  .header-basket {
-    display: flex;
 
   &__wrapper {
+    max-width: 1310px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 54px 0 81px 0;
+    color: #fff;
 
-    &_basket{
-      display: none;
+    &_basket {
+      justify-content: flex-end;
+      padding: 53px 0 38px 0;
+    }
+
+    &_card {
+      padding: 53px 0 25px 0;
     }
   }
-  }
+}
 
-  .price-wrapper {
-    display: flex;
-    flex-direction: column;
+.button-back {
+  display: none;
 
-      &__counts, &__price {
-      font-weight: 500;
-      font-size: 17px;
-      line-height: 20px;
-      text-align: right;
-    }
+  &_basket {
+    display: block;
   }
+}
 
-  .basket {
-    margin: 0 20px;
-    cursor: pointer;
+.title-wrapper {
+  display: flex;
+  gap: 63px;
+
+  &_basket {
+    margin-right: 114px;
   }
+}
+
+.header-title {
+  font-weight: 700;
+  font-size: 31px;
+  line-height: 38px;
+}
+
+.header-basket {
+  display: flex;
+
+&__wrapper {
+  display: flex;
+  align-items: center;
+
+  &_basket{
+    display: none;
+  }
+}
+}
+
+.price-wrapper {
+  display: flex;
+  flex-direction: column;
+
+    &__counts, &__price {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    text-align: right;
+  }
+}
+
+.basket {
+  margin: 0 20px;
+  cursor: pointer;
+}
 </style>
