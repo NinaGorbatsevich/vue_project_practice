@@ -43,9 +43,8 @@ export default {
 
 <style lang="scss" scoped>
 .background {
-  background: url('../assets/image/background_auth.png');
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background: url('../assets/image/background_auth.png') no-repeat;
+  background-size: cover;
   height: 100vh;
 
   &::after {

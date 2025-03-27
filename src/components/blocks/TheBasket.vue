@@ -22,6 +22,7 @@
         :subtitleBasket="true"
         :cardLinkBasket="true"
         :cardPriceBasket="true"
+        :id="item.id"
         @click="$router.push(`/card/${id}`)"
         @clickProductBtn="deleteProductBasket(item.idx)"
       />
