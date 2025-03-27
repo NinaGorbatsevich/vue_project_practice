@@ -34,25 +34,25 @@ export default {
 
 .css-checkbox + label {
   position: relative;
-  font-size: 14px;
+  font-family: "Montserrat", serif;
+  font-size: 11px;
+  font-weight: 300;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   height: 20px;
-  color: rgb(0, 0, 0);
+  color: #301411;
 }
 
 .css-checkbox + label::before {
   content: " ";
   display: inline-block;
-  vertical-align: middle;
   margin-right: 9px;
   width: 18px;
   height: 18px;
   background-color: white;
   border: 1px solid #D58C51;
   border-radius: 50%;
-  box-shadow: none;
 }
 
 .css-checkbox:checked + label::after {
@@ -60,14 +60,9 @@ export default {
   background-color: #D58C51;
   border: 1px solid #D58C51;
   border-radius: 50%;
-  background-position: center center;
   position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 1.1%;
+  left: 1.4%;
   top: 19%;
-  text-align: center;
   height: 11px;
   width: 11px;
 }
