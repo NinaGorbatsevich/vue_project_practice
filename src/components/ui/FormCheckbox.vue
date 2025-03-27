@@ -61,9 +61,9 @@ export default {
   border: 1px solid #D58C51;
   border-radius: 50%;
   position: absolute;
-  left: 1.4%;
-  top: 19%;
-  height: 11px;
-  width: 11px;
+  left: 4px;
+  top: 4px;
+  height: 10px;
+  width: 10px;
 }
 </style>
