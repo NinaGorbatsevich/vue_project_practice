@@ -1,5 +1,5 @@
 <template>
-  <input type="text" placeholder="Логин">
+  <input type="text" :placeholder="placeholder">
 </template>
 
 <script>
@@ -9,6 +9,10 @@ export default {
   components: {
   },
   props: {
+    placeholder: {
+      type: String,
+      default: 'Логин'
+    }
   },
   setup () {
   }
@@ -28,6 +32,11 @@ input {
     font-weight: 400;
     font-size: 16px;
     color: #161516;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid #D58C51;
   }
 }
 </style>

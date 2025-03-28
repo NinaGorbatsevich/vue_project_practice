@@ -1,22 +1,49 @@
 <template>
-  <div class="background">
-    <div class="form">
-      <FormAuthLink/>
-      <h1 class="form__title">
-        {{ title }}
-      </h1>
-      <FormInput/>
-      <FormInput/>
+  <main class="main">
+    <form class="form">
+      <span class="form__toggle">
+        <FormAuthLink
+          @click="toggleForm"
+          :text="namesForm.toggleName"
+        />
+      </span>
+      <h2 class="form__title">
+        {{ namesForm.titleForm }}
+      </h2>
+
+      <div class="form__item">
+        <FormInput
+          v-model.trim="login"
+          @input="getLaunchValidForm"
+        />
+        <p class="form__item-error">{{ errorLogin }}</p>
+      </div>
+
+      <div class="form__item">
+        <FormInput
+          placeholder="Пароль"
+          v-model.trim="password"
+          @input="getLaunchValidForm"
+        />
+        <p class="form__item-error">{{ errorPassword }}</p>
+      </div>
+
       <FormCheckbox/>
+
+      {{ errorValidAuthReg }}
+
       <BaseButtonSquare
-        authButton="true"
-        button="Войти"
+        authButton
+        :button="namesForm.buttonName"
       />
-    </div>
-  </div>
+    </form>
+  </main>
 </template>
 
 <script>
+import { ref, reactive, onBeforeMount } from 'vue'
+// import { useRouter } from 'vue-router'
+
 import FormAuthLink from '@/components/ui/FormAuthLink'
 import FormInput from '@/components/ui/FormInput'
 import FormCheckbox from '@/components/ui/FormCheckbox'
@@ -37,12 +64,104 @@ export default {
     }
   },
   setup () {
+    const login = ref('')
+    const password = ref('')
+    const errorLogin = ref('')
+    const errorPassword = ref('')
+    const errorValidAuthReg = ref('')
+
+    const isToggleForm = ref(true)
+
+    const namesForm = reactive({
+      toggleName: 'Зарегистрироваться',
+      titleForm: 'Вход',
+      buttonName: 'Войти'
+    })
+
+    onBeforeMount(() => {
+      if (localStorage.userList === undefined) {
+        localStorage.setItem('userList', JSON.stringify([]))
+      }
+    })
+
+    const getLaunchValidForm = () => {
+      isToggleForm.value ? getValidInputAuth() : getValidInputReg()
+    }
+
+    const getValidInputReg = () => {
+      if (login.value.length === 0) {
+        errorLogin.value = 'Поле не должно быть пустым'
+      }
+
+      if (password.value.length === 0) {
+        errorPassword.value = 'Поле не должно быть пустым'
+      }
+
+      if (login.value.length > 0 && login.value.length < 4) {
+        errorLogin.value = 'Логин должен содержать не менее 4-х символов'
+      } else if (login.value.length >= 4) {
+        errorLogin.value = ''
+      }
+
+      if (password.value.length > 0 && password.value.length < 4) {
+        errorPassword.value = 'Пароль должен содержать не менее 4-х символов'
+      } else if (password.value.length >= 4) {
+        errorPassword.value = ''
+      }
+    }
+
+    const getValidInputAuth = () => {
+      if (login.value.length === 0) {
+        errorLogin.value = 'Поле не должно быть пустым'
+      } else {
+        errorLogin.value = ''
+      }
+
+      if (password.value.length === 0) {
+        errorPassword.value = 'Поле не должно быть пустым'
+      } else {
+        errorPassword.value = ''
+      }
+    }
+
+    const toggleForm = () => {
+      isToggleForm.value = !isToggleForm.value
+
+      login.value = ''
+      password.value = ''
+      errorLogin.value = ''
+      errorPassword.value = ''
+
+      if (isToggleForm.value) {
+        namesForm.toggleName = 'Зарегистрироваться'
+        namesForm.titleForm = 'Вход'
+        namesForm.buttonName = 'Войти'
+      } else {
+        namesForm.toggleName = 'Авторизоваться'
+        namesForm.titleForm = 'Регистрация'
+        namesForm.buttonName = 'Зарегистрироваться'
+      }
+    }
+
+    return {
+      login,
+      password,
+      errorLogin,
+      errorPassword,
+      errorValidAuthReg,
+      isToggleForm,
+      namesForm,
+      toggleForm,
+      getValidInputReg,
+      getValidInputAuth,
+      getLaunchValidForm
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.background {
+.main {
   background: url('../assets/image/background_auth.png') no-repeat;
   background-size: cover;
   height: 100vh;
@@ -75,6 +194,20 @@ export default {
     font-size: 31px;
     color: #161516;
     margin-bottom: 36px;
+  }
+
+  &__item {
+    position: relative;
+
+    &-error {
+      position: absolute;
+      top: 40px;
+      left: 19px;
+      font-family: 'Montserrat', serif;
+      font-weight: 300;
+      font-size: 8px;
+      color: #FF0B0B;
+    }
   }
 }
 </style>
