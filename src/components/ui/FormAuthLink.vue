@@ -1,5 +1,5 @@
 <template>
-  <a href="" class="text">
+  <a href="" class="text" onclick="return false;">
     {{ text }}
   </a>
 </template>
@@ -26,7 +26,8 @@ export default {
   font-weight: 300;
   font-size: 11px;
   text-decoration: underline;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
   color: #D58C51;
   margin-bottom: 15px;
 }

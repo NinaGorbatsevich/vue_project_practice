@@ -66,7 +66,7 @@ export default {
     }
 
   &_auth {
-    padding: 12px 77px;
+    padding: 12px 0px;
     width: 200px;
     position: relative;
     left: 50%;
