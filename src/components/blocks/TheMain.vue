@@ -8,8 +8,8 @@
         :srcImg="item.img"
         :subtitle="item.subtitle"
         :price="item.price"
-        :btnSquareOff="true"
         :id="item.id"
+        :btnSquareOff="true"
         @clickProductBtn='addToBasket(item)'
       />
     </div>

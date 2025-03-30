@@ -48,10 +48,12 @@
           </router-link>
 
         </div>
-        <BaseButtonSquare
-          button="Выйти"
-          :exitButton="true"
-        />
+        <router-link to="/authorization">
+          <BaseButtonSquare
+            button="Выйти"
+            :exitButton="true"
+          />
+        </router-link>
       </div>
     </div>
   </header>
