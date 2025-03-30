@@ -5,6 +5,7 @@
     'button_exit': exitButton,
     'button_auth': authButton
     }"
+    @click.stop="$emit('clickActionBtn')"
     >
     {{ button }}
   </button>

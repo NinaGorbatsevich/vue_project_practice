@@ -84,7 +84,7 @@ export default createStore({
     setDeleteProductInBasket: (state, val) => {
       state.BasketProducts = state.BasketProducts.filter((item) => item.idx !== val)
       state.CountProductsInBasket = state.BasketProducts.length
-      state.AllPricePoductsInBasket = state.BasketProducts.reduce((sum, current) => {
+      state.AllPriceProductsInBasket = state.BasketProducts.reduce((sum, current) => {
         return sum + current.price
       }, 0)
     },
