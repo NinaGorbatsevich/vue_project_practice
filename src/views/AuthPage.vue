@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <form class="form">
+    <form class="form" @submit.prevent="postForm">
       <span class="form__toggle">
         <FormAuthLink
           @click="toggleForm"
@@ -24,6 +24,7 @@
           placeholder="Пароль"
           v-model.trim="password"
           @input="getLaunchValidForm"
+          type="password"
         />
         <p class="form__item-error">{{ errorPassword }}</p>
       </div>
@@ -42,7 +43,7 @@
 
 <script>
 import { ref, reactive, onBeforeMount } from 'vue'
-// import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 import FormAuthLink from '@/components/ui/FormAuthLink'
 import FormInput from '@/components/ui/FormInput'
@@ -64,6 +65,8 @@ export default {
     }
   },
   setup () {
+    const router = useRouter()
+
     const login = ref('')
     const password = ref('')
     const errorLogin = ref('')
@@ -83,6 +86,58 @@ export default {
         localStorage.setItem('userList', JSON.stringify([]))
       }
     })
+
+    const postForm = () => {
+      if (isToggleForm.value) {
+        goAuthorization()
+      } else {
+        setRegistrationUser()
+      }
+    }
+
+    const setRegistrationUser = () => {
+      getValidInputReg()
+      if (errorLogin.value !== '' && errorPassword.value !== '') {
+        return
+      }
+
+      const userList = JSON.parse(localStorage.userList) /* получаем массив из зарегистрированных пользователей */
+
+      const isActiveUser = userList.some(item => { /* проверка на совпадение */
+        return item.login === login.value
+      })
+
+      if (isActiveUser) {
+        errorValidAuthReg.value = 'Такой логин уже существует, придумайте другой'
+      } else {
+        userList.push({
+          login: login.value,
+          password: password.value,
+          basket: []
+        })
+        toggleForm()
+      }
+
+      localStorage.userList = JSON.stringify(userList)
+    }
+
+    const goAuthorization = () => {
+      getValidInputAuth()
+      const userAuth = JSON.parse(localStorage.userList)
+
+      const currentSeachUser = userAuth.find(item => item.login === login.value)
+
+      if (currentSeachUser?.password === password.value) {
+        localStorage.isAuth = JSON.stringify(true)
+        localStorage.currentUser = JSON.stringify({
+          currentUser: currentSeachUser.login,
+          basket: currentSeachUser.basket
+        })
+        router.push('/')
+      } else if (password.value.length !== 0 && login.value.length !== 0) {
+        errorValidAuthReg.value = 'Логин или пароль не верный'
+      }
+    }
 
     const getLaunchValidForm = () => {
       isToggleForm.value ? getValidInputAuth() : getValidInputReg()
@@ -131,6 +186,7 @@ export default {
       password.value = ''
       errorLogin.value = ''
       errorPassword.value = ''
+      errorValidAuthReg.value = ''
 
       if (isToggleForm.value) {
         namesForm.toggleName = 'Зарегистрироваться'
@@ -154,7 +210,10 @@ export default {
       toggleForm,
       getValidInputReg,
       getValidInputAuth,
-      getLaunchValidForm
+      getLaunchValidForm,
+      postForm,
+      goAuthorization,
+      setRegistrationUser
     }
   }
 }
