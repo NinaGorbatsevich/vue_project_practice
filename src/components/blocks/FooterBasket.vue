@@ -9,7 +9,9 @@
             {{ sumInBasket.toLocaleString('ru-Ru') }} ₽
           </p>
         </div>
-        <BaseButtonSquare/>
+        <BaseButtonSquare
+          @clickBtn="createOrder"
+        />
       </div>
   </footer>
 </template>
@@ -17,6 +19,7 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 import BaseButtonSquare from '../ui/BaseButtonSquare'
 
@@ -28,12 +31,24 @@ export default {
   props: {
   },
   setup () {
+    const router = useRouter()
     const store = useStore()
     const sumInBasket = computed(() => {
       return store.getters.getAllPriceProductsInBasket
     })
+
+    const createOrder = () => {
+      if (sumInBasket.value !== 0) {
+        router.push('/order')
+        store.commit('setClearBasket')
+      } else {
+        alert('Корзина пуста')
+      }
+    }
+
     return {
-      sumInBasket
+      sumInBasket,
+      createOrder
     }
   }
 }

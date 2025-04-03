@@ -3,6 +3,7 @@ import AuthPage from '../views/AuthPage'
 import MainPage from '../views/MainPage'
 import BasketPage from '../views/BasketPage'
 import CardPage from '../views/CardPage'
+import OrderPage from '../views/OrderPage.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/card/:id',
     name: 'card',
     component: CardPage
+  },
+  {
+    path: '/order',
+    name: 'order',
+    component: OrderPage
   }
 ]
 
