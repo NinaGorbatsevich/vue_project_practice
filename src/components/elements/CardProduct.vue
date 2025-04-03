@@ -1,76 +1,90 @@
 <template>
-  <div :class="{
-    'cards': true,
-    'cards_basket': cardsBasket
+  <div
+    :class="{
+      'cards': true,
+      'cards_basket': cardsBasket
     }"
     @click="$router.push(`/card/${id}`)"
     >
-    <div :class="{
-      'card': true,
-      'card_basket': cardBasket,
-      'card_card': cardCard
-      }"
+    <div
+      :class="{
+        'card': true,
+        'card_basket': cardBasket,
+        'card_card': cardCard
+        }"
       >
-        <div :class="{
+      <div
+        :class="{
           'card__link': true,
           'card__link_basket': cardLinkBasket,
           'card__link_card': cardLinkCard
           }"
-          >
-          <img :src="srcImg" alt="" :class="{
+        >
+        <img
+          :src="srcImg" alt=""
+          :class="{
             'image': true,
             'image_basket': imageBasket,
             'image_card': imageCard
             }"
-            >
-          <div :class="{
+          >
+        <div
+          :class="{
             'wrapper-text': true,
             'wrapper-text_card': wrapperTextCard
             }"
-            >
-            <h3 :class="{
+          >
+          <h3
+            :class="{
               'wrapper-text__title': true,
               'wrapper-text__title_basket': titleBasket,
               'wrapper-text__title_card': titleCard
               }"
-              >
-              {{ title }}</h3>
-            <p :class="{
+            >
+            {{ title }}
+          </h3>
+          <p
+            :class="{
               'wrapper-text__subtitle': true,
               'wrapper-text__subtitle_basket': subtitleBasket,
               'wrapper-text__subtitle_card': subtitleCard
               }"
-              >
-              {{ subtitle }}</p>
-          </div>
+            >
+            {{ subtitle }}
+          </p>
         </div>
-      <div :class="{
+      </div>
+    <div
+      :class="{
         'card__price': true,
         'card__price_basket': cardPriceBasket,
         'card__price_card': cardPriceCard
         }"
-        >
-        <p
-          :class="{
+      >
+      <p
+        :class="{
           'price': true,
           'price_card': priceCard
-          }">
-          {{ price.toLocaleString('ru-Ru') }} ₽</p>
-        <BaseButton
-          add
-          :remove="cardBasket"
-          @clickActionBtn="$emit('clickProductBtn')"
-          :class="{
+          }"
+        >
+        {{ price.toLocaleString('ru-Ru') }}
+      </p>
+      <BaseButton
+        add
+        :remove="cardBasket"
+        @clickActionBtn="$emit('clickProductBtn')"
+        :class="{
           'base-button': true,
           'base-button_off': baseButtonOff
           }"
-          />
-        <BaseButtonSquare button="В КОРЗИНУ"
-          :class="{
+        />
+      <BaseButtonSquare button="В КОРЗИНУ"
+        @clickBtn="$emit('clickBtn')"
+        :class="{
           'btn-square': true,
           'btn-square_off': btnSquareOff
           }"
-          />
+        />
       </div>
     </div>
   </div>

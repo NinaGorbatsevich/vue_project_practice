@@ -74,26 +74,47 @@ export default createStore({
     getCurrentProduct: state => state.CurrentProduct
   },
   mutations: {
-    setAddProductInBasket: (state, val) => { /* val это значение которое мы ищем, конкретно здесь это id */
+    setAddProductInBasket (state, val) { /* val это значение которое мы ищем, конкретно здесь это id */
       state.BasketProducts.push(val)
-      state.CountProductsInBasket = state.BasketProducts.length
-      state.AllPriceProductsInBasket = state.BasketProducts.reduce((sum, current) => {
-        return sum + current.price
-      }, 0) /* к нулю будет прибавляться цена */
+      this.commit('setUpdateCounts')
+      this.commit('setUpdateInfoUserBasket')
     },
-    setDeleteProductInBasket: (state, val) => {
+    setDeleteProductInBasket (state, val) {
       state.BasketProducts = state.BasketProducts.filter((item) => item.idx !== val)
-      state.CountProductsInBasket = state.BasketProducts.length
-      state.AllPriceProductsInBasket = state.BasketProducts.reduce((sum, current) => {
-        return sum + current.price
-      }, 0)
+      this.commit('setUpdateCounts')
+      this.commit('setUpdateInfoUserBasket')
     },
-    setCurrentProduct: (state, val) => {
+    setCurrentProduct (state, val) {
       state.Products.forEach((item) => {
         if (item.id === +val) {
           state.CurrentProduct = item
         }
       })
+    },
+    setUpdateCounts (state) {
+      state.CountProductsInBasket = state.BasketProducts.length
+      state.AllPriceProductsInBasket = state.BasketProducts.reduce((sum, current) => {
+        return sum + current.price
+      }, 0)
+    },
+    setDataDistribution (state) {
+      state.BasketProducts = JSON.parse(localStorage.currentUser).basket
+      this.commit('setUpdateCounts')
+      this.commit('setUpdateInfoUserBasket')
+    },
+    setUpdateInfoUserBasket (state) {
+      const infoUser = JSON.parse(localStorage.currentUser)
+      const users = JSON.parse(localStorage.userList)
+
+      const user = users.find((item) => item.login === infoUser.currentUser)
+
+      if (user) {
+        user.basket = state.BasketProducts
+        infoUser.basket = state.BasketProducts
+      }
+
+      localStorage.userList = JSON.stringify(users)
+      localStorage.currentUser = JSON.stringify(infoUser)
     }
   }
 })

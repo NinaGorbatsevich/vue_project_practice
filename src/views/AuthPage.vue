@@ -27,11 +27,11 @@
           type="password"
         />
         <p class="form__item-error">{{ errorPassword }}</p>
+        <FormCheckbox/>
+        <div class="form__item-valid">
+          {{ errorValidAuthReg }}
+        </div>
       </div>
-
-      <FormCheckbox/>
-
-      {{ errorValidAuthReg }}
 
       <BaseButtonSquare
         authButton
@@ -221,32 +221,21 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  background: url('../assets/image/background_auth.png') no-repeat;
+  background: linear-gradient(to right, rgba(0,0,0,0.4) 600px, rgba(0,0,0,0)), url('../assets/image/background_auth.png') no-repeat;
   background-size: cover;
   height: 100vh;
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    background: rgba(0, 0, 0, 0.45);
-    width: 100%;
-    height: 100%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
   font-family: "Montserrat", serif;
   background-color: #fff;
   padding: 7px 19px 34px 20px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   text-align: center;
-  position: absolute;
-  z-index: 1;
 
   &__title {
     font-weight: 700;
@@ -257,15 +246,20 @@ export default {
 
   &__item {
     position: relative;
+    font-weight: 300;
+    font-size: 8px;
+    color: #FF0B0B;
 
     &-error {
       position: absolute;
       top: 40px;
       left: 19px;
-      font-family: 'Montserrat', serif;
-      font-weight: 300;
-      font-size: 8px;
-      color: #FF0B0B;
+    }
+
+    &-valid {
+      position: absolute;
+      top: 80px;
+      left: 150px;
     }
   }
 }
