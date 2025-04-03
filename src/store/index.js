@@ -97,6 +97,11 @@ export default createStore({
         return sum + current.price
       }, 0)
     },
+    setClearBasket (state) {
+      state.BasketProducts = []
+      state.CountProductsInBasket = 0
+      state.AllPriceProductsInBasket = 0
+    },
     setDataDistribution (state) {
       state.BasketProducts = JSON.parse(localStorage.currentUser).basket
       this.commit('setUpdateCounts')

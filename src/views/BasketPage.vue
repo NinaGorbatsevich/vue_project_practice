@@ -4,7 +4,6 @@
 </template>
 
 <script>
-
 import TheBasket from '@/components/blocks/TheBasket.vue'
 import FooterBasket from '@/components/blocks/FooterBasket.vue'
 
