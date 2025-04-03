@@ -21,6 +21,7 @@
         :cardPriceCard="true"
         :priceCard="true"
         :baseButtonOff="true"
+        @clickBtn="add"
       />
     </div>
   </div>
@@ -30,6 +31,7 @@
 import { onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
+import { uuid } from 'vue-uuid'
 
 import HeaderMain from '../components/blocks/HeaderMain.vue'
 import CardProduct from '../components/elements/CardProduct.vue'
@@ -53,8 +55,21 @@ export default {
       return store.getters.getCurrentProduct
     })
 
+    const add = () => {
+      store.commit('setAddProductInBasket',
+        {
+          idx: uuid.v1(),
+          id: currentProduct.value.id,
+          img: currentProduct.value.img,
+          title: currentProduct.value.title,
+          price: currentProduct.value.price
+        }
+      )
+    }
+
     return {
-      currentProduct
+      currentProduct,
+      add
     }
   }
 }

@@ -4,6 +4,8 @@
 </template>
 
 <script>
+import { onBeforeMount } from 'vue'
+import { useStore } from 'vuex'
 
 import HeaderMain from '@/components/blocks/HeaderMain.vue'
 import TheMain from '@/components/blocks/TheMain.vue'
@@ -13,6 +15,12 @@ export default {
   components: {
     HeaderMain,
     TheMain
+  },
+  setup () {
+    const store = useStore()
+    onBeforeMount(() => {
+      store.commit('setDataDistribution')
+    })
   }
 }
 </script>

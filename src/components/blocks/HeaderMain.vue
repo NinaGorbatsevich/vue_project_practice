@@ -48,12 +48,11 @@
           </router-link>
 
         </div>
-        <router-link to="/authorization">
           <BaseButtonSquare
             button="Выйти"
             :exitButton="true"
+            @clickBtn="exit"
           />
-        </router-link>
       </div>
     </div>
   </header>
@@ -131,11 +130,18 @@ export default {
     const goBack = () => {
       router.go(-1)
     }
+
+    const exit = () => {
+      localStorage.isAuth = JSON.stringify(false)
+      router.push('/authorization')
+    }
+
     return {
       countBasket,
       sumInBasket,
       goBack,
-      productWord
+      productWord,
+      exit
     }
   }
 }
