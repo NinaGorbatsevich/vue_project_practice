@@ -67,7 +67,7 @@
           'price_card': priceCard
           }"
         >
-        {{ price.toLocaleString('ru-Ru') }}
+        {{ price.toLocaleString('ru-Ru') }} ₽
       </p>
       <BaseButton
         add

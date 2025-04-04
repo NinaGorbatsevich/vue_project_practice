@@ -99,8 +99,8 @@ export default createStore({
     },
     setClearBasket (state) {
       state.BasketProducts = []
-      state.CountProductsInBasket = 0
-      state.AllPriceProductsInBasket = 0
+      this.commit('setUpdateCounts')
+      this.commit('setUpdateInfoUserBasket')
     },
     setDataDistribution (state) {
       state.BasketProducts = JSON.parse(localStorage.currentUser).basket
