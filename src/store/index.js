@@ -74,7 +74,7 @@ export default createStore({
     getCurrentProduct: state => state.CurrentProduct
   },
   mutations: {
-    setAddProductInBasket (state, val) { /* val это значение которое мы ищем, конкретно здесь это id */
+    setAddProductInBasket (state, val) {
       state.BasketProducts.push(val)
       this.commit('setUpdateCounts')
       this.commit('setUpdateInfoUserBasket')
